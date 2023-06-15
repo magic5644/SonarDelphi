@@ -79,7 +79,9 @@ public class DelphiCodeCoverageToolParser implements DelphiCodeCoverageParser
 
   private void parseFileNode (SensorContext sensorContext, Node srcFile){
     String fileName = srcFile.getAttributes().getNamedItem("name").getTextContent();
-    String fileNameWithoutPath = Path.of(fileName).getFileName().toString();
+    File file = new File(fileName);
+    String fileNameWithoutPath = file.getName();
+    //String fileNameWithoutPath = Path.of(fileName).getFileName().toString();
     try {
         InputFile sourceFile = delphiProjectHelper.findFileInDirectories(fileNameWithoutPath);
         NewCoverage newCoverage = sensorContext.newCoverage();
